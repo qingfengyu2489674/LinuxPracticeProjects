@@ -29,4 +29,22 @@ aux_source_directory (${DIR_SRC_ROOT} PROJECT_SOURCE_FILES)
 add_library (yhgthreadsorter ${PROJECT_SOURCE_FILES})
 
 
+# configure snippet
 add_subdirectory ("snippet")
+
+
+# configure unit test
+option (WITH_GTEST "Enable unit tests by GoogleTest" OFF)
+
+if (WITH_GTEST)
+    message ("-- Unit test by GoogleTest is enabled")
+
+else ()
+    message ("-- Unit test by GoogleTest is disabled")
+
+endif ()
+
+if (WITH_GTEST)
+    add_subdirectory (test)
+
+endif ()
