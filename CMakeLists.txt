@@ -21,9 +21,12 @@ include (GNUInstallDirs)
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
 
-aux_source_directory ("${PROJECT_SOURCE_DIR}/src" PROJECT_SOURCE_FILES)
+set (DIR_SRC_ROOT "${PROJECT_SOURCE_DIR}/src")
+
+include_directories (${DIR_SRC_ROOT})
+aux_source_directory (${DIR_SRC_ROOT} PROJECT_SOURCE_FILES)
 
 add_library (yhgthreadsorter ${PROJECT_SOURCE_FILES})
 
 
-# add_subdirectory ("snippet")
+add_subdirectory ("snippet")
