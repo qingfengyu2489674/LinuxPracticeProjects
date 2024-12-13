@@ -8,9 +8,9 @@
 #include <filesystem>
 #include <thread>
 #include <atomic>
-#include "./CLFileReadManager/CLFileReadManager.h"
-#include "./CLFileDataSorter/CLDataSorter.h"
-#include "./CLSortedFileMerger/CLSortedFileMerger.h"
+#include "CLFileReadManager.h"
+#include "CLDataSorter.h"
+#include "CLSortedFileMerger.h"
 
 
 class CLDataSorter;

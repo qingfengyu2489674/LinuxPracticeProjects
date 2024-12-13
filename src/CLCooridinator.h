@@ -11,8 +11,8 @@
 #include <mutex>
 #include <optional>
 
-#include "./CLFileSortTaskPublisher/CLFileSortTaskPublisher.h"
-#include "./CLThreadPool/CLThreadPool.h"
+#include "CLFileSortTaskPublisher.h"
+#include "CLThreadPool.h"
 
 class CLThreadPool;
 class CLFileSortTaskPublisher;

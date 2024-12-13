@@ -12,9 +12,9 @@
 #include <cstring>
 
 #include "CLFileSortTaskPublisher.h"
-#include "./CLFileReadManager/CLFileReadManager.h"
-#include "./CLFileDataSorter/CLDataSorter.h"
-#include "./CLSortedFileMerger/CLSortedFileMerger.h"
+#include "CLFileReadManager.h"
+#include "CLDataSorter.h"
+#include "CLSortedFileMerger.h"
 
 
 void print_int64_data(const std::vector<int64_t>& data) 
