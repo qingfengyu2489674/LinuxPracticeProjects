@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+#include <filesystem>
+#include "CLFileSortTaskPublisher.h"
+
+
+int main() {
+    // 创建 CLFileSortTaskPublisher 对象
+    std::string dataDir = "../test_data";
+    std::string sortedDir = "../sorted_files";
+    
+    // 创建占位符类对象
+    CLDataSorter dataSorter;
+    CLSortedFileMerger sortedFileMerger;
+    CLFileReadManager fileReadManager;
+
+    CLFileSortTaskPublisher taskPublisher(dataDir, sortedDir);
+
+    // 设置任务发布者
+    taskPublisher.SetTaskPublisher(&dataSorter, &sortedFileMerger, &fileReadManager);
+
+    // 扫描 sorted_files 目录并收集文件路径
+    std::string sortedFilesDir = "../sorted_files"; // 要扫描的目录
+    std::vector<std::string> filePathsToMerge;
+
+    for (const auto& entry : std::filesystem::directory_iterator(sortedFilesDir)) {
+        if (entry.is_regular_file()) {
+            filePathsToMerge.push_back(entry.path().string());
+        }
+    }
+
+    std::string t = taskPublisher.DataSortTask(0, 1024);
+    std::string p = taskPublisher.DataSortTask(1024, 1024);
+    std::string q = taskPublisher.DataSortTask(2048, 1024);
+
+    // 打印收集到的文件路径
+    std::cout << "Files to merge from directory: " << sortedFilesDir << std::endl;
+    for (const auto& file : filePathsToMerge) {
+        std::cout << "  " << file << std::endl;
+    }
+
+    // 调用 CLFileMergeTask
+    std::string mergedFile = taskPublisher.FileMergeTask(filePathsToMerge);  // 调用 CLFileMergeTask
+    std::cout << "Merge result file: " << mergedFile << std::endl;
+
+    return 0;
+}
